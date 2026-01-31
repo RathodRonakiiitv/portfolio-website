@@ -1,0 +1,117 @@
+.glassButtonContainer {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  z-index: 1000;
+  cursor: pointer;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 8px 32px 0 rgba(0, 0, 0, 0.37),
+    inset 0 0 15px rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.glassButtonContainer:hover {
+  transform: translateX(-50%) scale(1.1);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(91, 5, 5, 0.4);
+}
+
+.glassButtonContainer:active {
+  transform: translateX(-50%) scale(0.95);
+}
+
+.glassButtonContainer canvas {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.glassButtonText {
+  position: relative;
+  z-index: 1001;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: white;
+  pointer-events: none;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  font-family: 'TTCommonsLocal', sans-serif;
+}
+
+/* Popup */
+.glassPopup {
+  position: fixed;
+  bottom: 30px;
+  right: -400px;
+  width: 280px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  transition: right 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-family: 'TTCommonsLocal', sans-serif;
+}
+
+.glassPopup.show {
+  right: 30px;
+}
+
+.popupContent {
+  position: relative;
+  color: white;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.popupContent a {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.popupContent a:hover {
+  text-decoration: underline;
+}
+
+.closePopup {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.closePopup:hover {
+  color: white;
+}
+
+@media (max-width: 480px) {
+  .glassPopup {
+    width: 220px;
+    bottom: 100px;
+    font-size: 0.8rem;
+  }
+}

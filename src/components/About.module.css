@@ -1,0 +1,97 @@
+.profileAboutSection {
+  max-width: 1400px;
+  margin: 8rem auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 4rem;
+  align-items: center;
+  position: relative;
+}
+
+.aboutDetails {
+  position: relative;
+  z-index: 1;
+  font-family: 'YapariLocal', sans-serif;
+}
+
+.aboutDetails h3 {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #3b82f6;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+}
+
+.aboutDetails h3:first-child {
+  margin-top: 0;
+}
+
+.aboutDetails p,
+.aboutDetails ul {
+  font-family: 'TTCommonsLocal', sans-serif;
+  font-size: 0.65rem;
+  line-height: 1.8;
+  color: #cfcfcf;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.aboutDetails ul li {
+  margin-bottom: 0.5rem;
+}
+
+.aboutDetails a {
+  color: #aaa;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.aboutDetails a:hover {
+  color: #3b82f6;
+}
+
+.aboutRight {
+  text-align: right;
+}
+
+.profileImageContainer {
+  max-width: 750px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.profileImageContainer img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+  transition: transform 0.3s ease;
+}
+
+.profileImageContainer img:hover {
+  transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .profileAboutSection {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .aboutRight {
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .profileAboutSection {
+    margin: 2rem auto;
+    padding: 0 1rem;
+    gap: 1rem;
+  }
+}
