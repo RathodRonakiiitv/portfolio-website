@@ -1,5 +1,4 @@
 import styles from './Tools.module.css'
-import vscodeIcon from '../assets/vscode.svg'
 
 const Tools = () => {
   const tools = [
@@ -10,7 +9,6 @@ const Tools = () => {
     { name: 'PostgreSQL', icon: 'https://cdn.simpleicons.org/postgresql' },
     { name: 'Git', icon: 'https://cdn.simpleicons.org/git' },
     { name: 'GitHub', icon: 'https://cdn.simpleicons.org/github/white' },
-    { name: 'VS Code', icon: vscodeIcon },
     { name: 'Linux', icon: 'https://cdn.simpleicons.org/linux/white' }
   ]
 

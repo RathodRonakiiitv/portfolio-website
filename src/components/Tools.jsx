@@ -9,7 +9,6 @@ const Tools = () => {
     { name: 'PostgreSQL', icon: 'https://cdn.simpleicons.org/postgresql' },
     { name: 'Git', icon: 'https://cdn.simpleicons.org/git' },
     { name: 'GitHub', icon: 'https://cdn.simpleicons.org/github/white' },
-    { name: 'VS Code', icon: './images/tools/vscode.svg' },
     { name: 'Linux', icon: 'https://cdn.simpleicons.org/linux/white' }
   ]
 
