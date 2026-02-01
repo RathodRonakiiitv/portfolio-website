@@ -1,0 +1,147 @@
+.heroSection {
+  background:
+    radial-gradient(circle at center, transparent 20%, rgba(0, 0, 0, 0.8) 100%),
+    radial-gradient(circle at 75% 50%, #3b82f6 0%, #2563eb 30%, #1e40af 60%, #000000 100%);
+  min-height: 95vh;
+  padding: 2rem;
+  border-radius: 0 0 60px 60px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.heroContent {
+  max-width: 1400px;
+  margin: auto;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 4rem;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.heroText h1 {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-family: 'HelveticaLocal', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 2rem;
+  text-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.graphicWord {
+  letter-spacing: -0.03em;
+}
+
+.designerFirst {
+  font-family: 'FormalScriptLocal', serif;
+  font-weight: 700;
+  display: inline-block;
+  vertical-align: baseline;
+  margin-right: 0.02em;
+  font-size: 1.8em;
+}
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+  max-width: 500px;
+}
+
+.serviceItem {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 12px;
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.serviceIcon {
+  width: 24px;
+  height: 24px;
+  color: var(--primary-color);
+  flex-shrink: 0;
+}
+
+.serviceIcon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.serviceName {
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'TTCommonsLocal', sans-serif;
+}
+
+.heroRight {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  border-radius: 24px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.heroRight h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  font-family: 'YapariLocal', sans-serif;
+}
+
+.heroRight p {
+  font-size: 1rem;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+@media (max-width: 1024px) {
+  .heroContent {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .services {
+    margin: 3rem auto;
+  }
+
+  .heroRight {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .heroText h1 {
+    font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroSection {
+    min-height: 70vh;
+    padding: 0.75rem;
+    border-radius: 0 0 28px 28px;
+  }
+
+  .heroContent {
+    padding: 1rem 0;
+    gap: 1rem;
+  }
+
+  .heroText h1 {
+    font-size: clamp(2rem, 8vw, 3.6rem);
+  }
+
+  .services {
+    max-width: 100%;
+    margin: 2rem auto;
+  }
+}
