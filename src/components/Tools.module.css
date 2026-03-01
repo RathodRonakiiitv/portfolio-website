@@ -1,135 +1,106 @@
-.toolsSection {
+.section {
+  padding: 100px 60px;
   max-width: 1400px;
-  margin: 6rem auto;
-  padding: 0 2rem;
+  margin: 0 auto;
 }
 
-.toolsContainer {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 4rem;
-  align-items: center;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 60px;
+  gap: 40px;
 }
 
-.toolsRight {
-  padding-left: 2rem;
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.toolsDescription {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  opacity: 0.9;
-  font-weight: 300;
-  font-family: 'TTCommonsLocal', sans-serif;
-}
-
-.toolsDescription b {
-  color: #3b82f6;
-}
-
-.toolsTitle {
-  font-size: 0.8rem;
-  margin-bottom: 2rem;
-  opacity: 0.4;
+.sectionTag {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.title {
+  font-family: 'HelveticaLocal', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
+}
+
+.accent {
+  background: var(--gradient-hero);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 4s ease infinite;
+}
+
+.description {
+  flex: 0.6;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.7;
 }
 
 .toolsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(56px, 1fr));
-  gap: 0.75rem;
-  align-items: center;
-  justify-items: center;
-  width: 100%;
-  padding: 0.5rem 0;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
 }
 
 .toolItem {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  transition: transform 0.2s ease;
-  padding: 0.25rem;
+  gap: 14px;
+  padding: 32px 20px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .toolItem:hover {
-  transform: translateY(-5px);
+  border-color: rgba(224, 122, 95, 0.25);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(224, 122, 95, 0.08);
 }
 
 .toolIcon {
-  width: 48px;
-  height: 48px;
-  display: block;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
-  padding: 4px;
-  box-sizing: border-box;
-  max-width: 100%;
-  opacity: 0.85;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: transform 0.3s ease;
 }
 
 .toolItem:hover .toolIcon {
-  opacity: 1;
+  transform: scale(1.2);
 }
 
 .toolName {
-  font-size: 0.72rem;
-  font-weight: 500;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.toolItem:hover .toolName {
-  opacity: 0.6;
-}
-
-@media (max-width: 1024px) {
-  .toolsContainer {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-
-  .toolsRight {
-    padding-left: 0;
-    border-left: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 2rem;
-  }
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
 }
 
 @media (max-width: 768px) {
-  .toolsGrid {
-    gap: 2.5rem;
+  .section {
+    padding: 60px 24px;
   }
 
-  .toolIcon {
-    width: 36px;
-    height: 36px;
-  }
-}
-
-@media (max-width: 480px) {
-  .toolsSection {
-    margin: 1.5rem auto;
-    padding: 0 1rem;
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .toolsGrid {
-    grid-template-columns: repeat(auto-fit, minmax(44px, 1fr));
-    gap: 0.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
   }
 
-  .toolIcon {
-    width: 40px;
-    height: 40px;
-  }
-
-  .toolName {
-    font-size: 0.6rem;
+  .toolItem {
+    padding: 20px 12px;
   }
 }

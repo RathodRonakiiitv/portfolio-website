@@ -5,7 +5,7 @@ const CustomCursor = () => {
 
   useEffect(() => {
     const cursor = cursorRef.current
-    
+
     const moveCursor = (e) => {
       cursor.style.left = e.clientX + 'px'
       cursor.style.top = e.clientY + 'px'
@@ -13,14 +13,16 @@ const CustomCursor = () => {
 
     const handleMouseEnter = () => {
       cursor.style.transform = 'translate(-50%, -50%) scale(1.8)'
+      cursor.style.background = 'rgba(224, 122, 95, 0.15)'
     }
 
     const handleMouseLeave = () => {
       cursor.style.transform = 'translate(-50%, -50%) scale(1)'
+      cursor.style.background = 'transparent'
     }
 
     document.addEventListener('mousemove', moveCursor)
-    
+
     const interactiveElements = document.querySelectorAll('a, button')
     interactiveElements.forEach(el => {
       el.addEventListener('mouseenter', handleMouseEnter)

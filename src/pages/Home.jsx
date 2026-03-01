@@ -1,60 +1,92 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 import Brands from '../components/Brands'
 import Carousel from '../components/Carousel'
 import About from '../components/About'
+import Stats from '../components/Stats'
 import Tools from '../components/Tools'
 import Categories from '../components/Categories'
 import ConnectButton from '../components/ConnectButton'
 import Footer from '../components/Footer'
 
+gsap.registerPlugin(ScrollTrigger)
+
 const Home = () => {
+  const mainRef = useRef(null)
+
   useEffect(() => {
-    // Reveal animation observer
-    const revealElements = document.querySelectorAll('.reveal')
-    
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active')
-            observer.unobserve(entry.target)
+    const ctx = gsap.context(() => {
+      // Animate each section with ScrollTrigger
+      const sections = gsap.utils.toArray('.reveal')
+      sections.forEach((section) => {
+        gsap.fromTo(section,
+          { opacity: 0, y: 80 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 85%',
+              end: 'top 50%',
+              toggleActions: 'play none none none',
+            }
           }
-        })
-      },
-      { threshold: 0.15 }
-    )
+        )
+      })
 
-    revealElements.forEach((el) => observer.observe(el))
+      // Parallax effect for section dividers
+      gsap.utils.toArray('.section-divider').forEach((divider) => {
+        gsap.fromTo(divider,
+          { scaleX: 0 },
+          {
+            scaleX: 1,
+            duration: 1.2,
+            ease: 'power2.inOut',
+            scrollTrigger: {
+              trigger: divider,
+              start: 'top 90%',
+              toggleActions: 'play none none none',
+            }
+          }
+        )
+      })
+    }, mainRef)
 
-    return () => {
-      revealElements.forEach((el) => observer.unobserve(el))
-    }
+    return () => ctx.revert()
   }, [])
 
   return (
-    <>
-      <section className="reveal">
-        <Navbar />
-        <Hero />
-      </section>
+    <div ref={mainRef}>
+      <Navbar />
+      <Hero />
+      <div className="section-divider" />
       <Brands />
+      <div className="section-divider" />
       <div className="reveal">
         <Carousel />
       </div>
+      <div className="section-divider" />
       <div className="reveal">
         <About />
       </div>
+      <div className="section-divider" />
+      <Stats />
+      <div className="section-divider" />
       <div className="reveal">
         <Tools />
       </div>
+      <div className="section-divider" />
       <div className="reveal">
         <Categories />
       </div>
       <ConnectButton />
       <Footer />
-    </>
+    </div>
   )
 }
 

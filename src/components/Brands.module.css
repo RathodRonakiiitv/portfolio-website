@@ -1,69 +1,56 @@
-.brandsSection {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 4rem 2rem;
+.section {
+  padding: 40px 0;
+  overflow: hidden;
+  border-top: 1px solid var(--border-glass);
+  border-bottom: 1px solid var(--border-glass);
+  background: rgba(255, 255, 255, 0.01);
 }
 
-.brandsTitle {
-  font-size: 0.9rem;
-  margin-bottom: 2rem;
-  opacity: 0.5;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  text-align: center;
+.marqueeTrack {
+  overflow: hidden;
+  width: 100%;
 }
 
-.brandsGrid {
+.marquee {
   display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  gap: 2rem;
-  align-items: center;
+  gap: 60px;
+  animation: marqueeScroll 25s linear infinite;
+  width: max-content;
 }
 
-.brandItem {
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.item {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
-  font-size: 1.2rem;
-  font-weight: 700;
-  opacity: 0.6;
-  transition: opacity 0.3s;
+  gap: 12px;
+  flex-shrink: 0;
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
 }
 
-.brandItem:hover {
+.item:hover {
   opacity: 1;
 }
 
-.brandLogo {
-  display: block;
-  height: 56px;
-  width: auto;
+.item img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
 }
 
-@media (max-width: 480px) {
-  .brandsSection {
-    padding: 1.5rem 0.5rem;
-  }
-
-  .brandsGrid {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    gap: 0.5rem;
-  }
-
-  .brandItem {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-  }
-
-  .brandLogo {
-    height: auto;
-    max-height: 35px;
-    width: 100%;
-    max-width: 80px;
-    object-fit: contain;
-  }
+.item span {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
 }

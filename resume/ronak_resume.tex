@@ -1,0 +1,151 @@
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{url}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+\pdfgentounicode=1
+
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+\begin{document}
+
+\begin{center}
+    \textbf{\Huge \scshape Ronak Rathod} \\ \vspace{1pt}
+    \small \href{mailto:rathodronakiiitv@gmail.com}{\underline{rathodronakiiitv@gmail.com}} $|$
+    \href{https://linkedin.com/in/ronak-rathod-5a47a2325}{\underline{linkedin.com/in/ronak-rathod}} $|$
+    \href{https://github.com/RathodRonakiiitv}{\underline{github.com/RathodRonakiiitv}} $|$
+    \href{https://leetcode.com/u/ronak_2506/}{\underline{leetcode.com/u/ronak\_2506}}
+\end{center}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Indian Institute of Information Technology (IIIT)}{Vadodara, Gujarat}
+      {Bachelor of Technology in Computer Science and Engineering}{2024 -- 2028 (Expected)}
+      \resumeItemListStart
+        \resumeItem{Relevant Coursework: Data Structures and Algorithms, Database Management Systems, Object-Oriented Programming, Operating Systems}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+      \textbf{Languages}{: C++, Python, SQL, JavaScript, HTML/CSS} \\
+      \textbf{Frameworks \& Libraries}{: FastAPI, React, SQLAlchemy, NLTK, GSAP, Three.js} \\
+      \textbf{Databases}{: PostgreSQL, MySQL} \\
+      \textbf{Developer Tools}{: Git, GitHub, Docker, Render, Vercel, Vite} \\
+      \textbf{Concepts}{: REST APIs, NLP, Sentiment Analysis, Web Scraping, System Design}
+    }}
+ \end{itemize}
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+
+      \resumeProjectHeading
+          {\textbf{E-Commerce Review Analyzer} $|$ \emph{FastAPI, React, PostgreSQL, NLP, Groq AI, Docker} $|$ \href{https://e-commerce-review-analysis.vercel.app}{\underline{Live}} $|$ \href{https://github.com/RathodRonakiiitv/E-commerce-review-analysis}{\underline{GitHub}}}{2025}
+          \resumeItemListStart
+            \resumeItem{Built a full-stack web application that scrapes Flipkart product reviews and performs AI-powered sentiment analysis, fake review detection, and aspect-based analysis.}
+            \resumeItem{Engineered a FastAPI backend with background job processing, serving 200+ reviews per product with real-time scraping status updates.}
+            \resumeItem{Integrated Groq AI (LLaMA 3) for generating natural language product summaries, aspect deep-dives, and seller response suggestions.}
+            \resumeItem{Implemented VADER-based sentiment analysis and statistical fake review detection, achieving accurate classification across product categories.}
+            \resumeItem{Deployed with Docker on Render (backend) and Vercel (frontend) with PostgreSQL database, featuring auto-retry for cold start handling.}
+            \resumeItem{Built a responsive React dashboard with interactive charts, product comparison, and PDF/CSV export functionality.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{Resume Matcher} $|$ \emph{Python, NLP, React} $|$ \href{https://resume-matching-project.vercel.app/}{\underline{Live}} $|$ \href{https://github.com/RathodRonakiiitv/resume-matching-project}{\underline{GitHub}}}{2025}
+          \resumeItemListStart
+            \resumeItem{Developed an NLP-powered resume-job matching tool that scores resumes against job descriptions using text similarity algorithms.}
+            \resumeItem{Implemented keyword extraction and scoring to help job seekers optimize their resumes for specific roles.}
+            \resumeItem{Built a clean React frontend deployed on Vercel for real-time matching and feedback.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{Portfolio Website} $|$ \emph{React, GSAP, Three.js, Vite} $|$ \href{https://github.com/RathodRonakiiitv/portfolio-website}{\underline{GitHub}}}{2025}
+          \resumeItemListStart
+            \resumeItem{Designed and developed a premium personal portfolio with GSAP ScrollTrigger animations, glassmorphism UI, and a Three.js 3D interactive element.}
+            \resumeItem{Implemented custom cursor, animated preloader, infinite tech marquee, and scroll-triggered section reveals for a polished user experience.}
+          \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+%-----------ACHIEVEMENTS-----------
+\section{Achievements}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+      \textbf{Competitive Programming}{: Solved 500+ problems on LeetCode and competitive programming platforms using C++.} \\
+      \textbf{Full-Stack Deployment}{: Successfully deployed production applications with Docker, CI/CD pipelines, and cloud platforms (Render, Vercel).}
+    }}
+ \end{itemize}
+
+\end{document}

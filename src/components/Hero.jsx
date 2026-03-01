@@ -1,6 +1,14 @@
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
 import styles from './Hero.module.css'
 
 const Hero = () => {
+  const heroRef = useRef(null)
+  const nameRef = useRef(null)
+  const subtitleRef = useRef(null)
+  const servicesRef = useRef(null)
+  const rightRef = useRef(null)
+
   const services = [
     {
       name: 'Backend Dev',
@@ -36,23 +44,85 @@ const Hero = () => {
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <circle cx="12" cy="12" r="3"></circle>
-          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          <path d="M12 1v6m0 6v6m-7-7h6m6 0h6"></path>
         </svg>
       )
     }
   ]
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: 'power4.out' } })
+
+      // Animate name letters
+      tl.fromTo(nameRef.current.querySelectorAll('.char'),
+        { opacity: 0, y: 80, rotateX: -90 },
+        { opacity: 1, y: 0, rotateX: 0, duration: 1, stagger: 0.06 },
+        0.3
+      )
+
+      // Animate subtitle
+      tl.fromTo(subtitleRef.current,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.8 },
+        0.8
+      )
+
+      // Animate service items
+      tl.fromTo(servicesRef.current.querySelectorAll(`.${styles.serviceItem}`),
+        { opacity: 0, y: 40, scale: 0.8 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.1 },
+        1
+      )
+
+      // Animate right section
+      tl.fromTo(rightRef.current,
+        { opacity: 0, x: 60 },
+        { opacity: 1, x: 0, duration: 1 },
+        0.6
+      )
+
+      // Floating animation for service icons
+      gsap.utils.toArray(`.${styles.serviceIcon}`).forEach((icon, i) => {
+        gsap.to(icon, {
+          y: -8,
+          duration: 2 + i * 0.3,
+          ease: 'sine.inOut',
+          yoyo: true,
+          repeat: -1,
+          delay: i * 0.2
+        })
+      })
+    }, heroRef)
+
+    return () => ctx.revert()
+  }, [])
+
+  // Split text into characters for animation
+  const splitText = (text) => {
+    return text.split('').map((char, i) => (
+      <span key={i} className="char" style={{ display: 'inline-block' }}>
+        {char === ' ' ? '\u00A0' : char}
+      </span>
+    ))
+  }
+
   return (
-    <section className={styles.heroSection} id="home">
+    <section className={styles.heroSection} id="home" ref={heroRef}>
+      {/* Background gradient orbs */}
+      <div className={styles.bgOrb1}></div>
+      <div className={styles.bgOrb2}></div>
+
       <div className={styles.heroContent}>
         <div className={styles.heroText}>
-          <h1>
-            <span className={styles.graphicWord}>Ronak</span>
+          <div className={styles.badge}>Available for opportunities</div>
+          <h1 ref={nameRef}>
+            <span className={styles.firstName}>{splitText('Ronak')}</span>
             <br />
-            <span className={styles.designerFirst}>R</span>athod
+            <span className={styles.lastName}>{splitText('Rathod')}</span>
           </h1>
 
-          <div className={styles.services}>
+          <div className={styles.services} ref={servicesRef}>
             {services.map((service, index) => (
               <div key={index} className={styles.serviceItem}>
                 <div className={styles.serviceIcon}>{service.icon}</div>
@@ -62,14 +132,30 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className={styles.heroRight}>
-          <h3>Software Developer | Problem Solver | Turning Ideas into Scalable Code</h3>
+        <div className={styles.heroRight} ref={rightRef}>
+          {/* Photo placeholder */}
+          <div className={styles.photoPlaceholder}>
+            <div className={styles.photoInner}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.3">
+                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              <span className={styles.photoText}>Photo</span>
+            </div>
+          </div>
+          <h3 ref={subtitleRef}>Software Developer | Problem Solver | Turning Ideas into Scalable Code</h3>
           <p className="ttcommons">
-            I'm a passionate Software Developer and CS student who enjoys solving problems and building reliable, 
-            logic-driven applications. I focus on backend development, databases, and algorithms — turning complex 
+            I'm a passionate Software Developer and CS student who enjoys solving problems and building reliable,
+            logic-driven applications. I focus on backend development, databases, and algorithms — turning complex
             ideas into clean, working code.
           </p>
         </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className={styles.scrollIndicator}>
+        <div className={styles.scrollLine}></div>
+        <span>scroll</span>
       </div>
     </section>
   )
