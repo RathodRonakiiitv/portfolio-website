@@ -82,18 +82,10 @@ const About = () => {
         </div>
 
         <div className={styles.profileImageContainer}>
-          {/* Photo placeholder - replace src with your photo */}
           <div className={styles.photoFrame}>
-            <div className={styles.photoPlaceholder}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.3">
-                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-              </svg>
-              <span>Your Photo</span>
-            </div>
+            <img src="/images/profile.jpg" alt="Ronak Rathod" className={styles.profileImage} />
           </div>
-          {/* Resume download placeholder */}
-          <a href="#" className={styles.resumeBtn} onClick={(e) => { e.preventDefault(); alert('Resume PDF coming soon!') }}>
+          <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className={styles.resumeBtn}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="16" height="16">
               <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
               <polyline points="7 10 12 15 17 10"></polyline>

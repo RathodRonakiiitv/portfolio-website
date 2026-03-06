@@ -133,15 +133,9 @@ const Hero = () => {
         </div>
 
         <div className={styles.heroRight} ref={rightRef}>
-          {/* Photo placeholder */}
-          <div className={styles.photoPlaceholder}>
-            <div className={styles.photoInner}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.3">
-                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-              </svg>
-              <span className={styles.photoText}>Photo</span>
-            </div>
+          {/* Profile Photo */}
+          <div className={styles.photoContainer}>
+            <img src="/images/profile.jpg" alt="Ronak Rathod" className={styles.profilePhoto} />
           </div>
           <h3 ref={subtitleRef}>Software Developer | Problem Solver | Turning Ideas into Scalable Code</h3>
           <p className="ttcommons">

@@ -144,41 +144,37 @@
   gap: 20px;
 }
 
-.photoPlaceholder {
-  width: 180px;
-  height: 180px;
+.photoContainer {
+  width: 200px;
+  height: 200px;
   border-radius: 24px;
-  background: var(--bg-glass);
-  border: 2px dashed var(--border-glass);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden;
+  border: 2px solid var(--border-glass);
   margin-bottom: 10px;
   transition: border-color 0.3s ease;
+  position: relative;
 }
 
-.photoPlaceholder:hover {
+.photoContainer::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 24px;
+  background: var(--gradient-hero);
+  z-index: -1;
+  opacity: 0.4;
+}
+
+.photoContainer:hover {
   border-color: var(--accent);
 }
 
-.photoInner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-.photoInner svg {
-  width: 48px;
-  height: 48px;
-  color: var(--text-dim);
-}
-
-.photoText {
-  font-size: 0.75rem;
-  color: var(--text-dim);
-  letter-spacing: 1px;
-  text-transform: uppercase;
+.profilePhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
 }
 
 .heroRight h3 {
@@ -243,8 +239,8 @@
     padding: 8px 14px;
   }
 
-  .photoPlaceholder {
-    width: 120px;
-    height: 120px;
+  .photoContainer {
+    width: 140px;
+    height: 140px;
   }
 }

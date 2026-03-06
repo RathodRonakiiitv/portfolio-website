@@ -143,27 +143,12 @@
   opacity: 0.3;
 }
 
-.photoPlaceholder {
+.profileImage {
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-.photoPlaceholder svg {
-  width: 48px;
-  height: 48px;
-  color: var(--text-dim);
-}
-
-.photoPlaceholder span {
-  font-size: 0.75rem;
-  color: var(--text-dim);
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
 }
 
 .resumeBtn {
