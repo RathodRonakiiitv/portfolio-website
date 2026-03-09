@@ -115,12 +115,12 @@
       \resumeProjectHeading
           {\textbf{E-Commerce Review Analyzer} $|$ \emph{FastAPI, React, PostgreSQL, NLP, Groq AI, Docker} $|$ \href{https://e-commerce-review-analysis.vercel.app}{\underline{Live}} $|$ \href{https://github.com/RathodRonakiiitv/E-commerce-review-analysis}{\underline{GitHub}}}{2025}
           \resumeItemListStart
-            \resumeItem{Built a full-stack web application that scrapes Flipkart product reviews and performs AI-powered sentiment analysis, fake review detection, and aspect-based analysis.}
-            \resumeItem{Engineered a FastAPI backend with background job processing, serving 200+ reviews per product with real-time scraping status updates.}
-            \resumeItem{Integrated Groq AI (LLaMA 3) for generating natural language product summaries, aspect deep-dives, and seller response suggestions.}
-            \resumeItem{Implemented VADER-based sentiment analysis and statistical fake review detection, achieving accurate classification across product categories.}
-            \resumeItem{Deployed with Docker on Render (backend) and Vercel (frontend) with PostgreSQL database, featuring auto-retry for cold start handling.}
-            \resumeItem{Built a responsive React dashboard with interactive charts, product comparison, and PDF/CSV export functionality.}
+            \resumeItem{Built a fake review detection ML pipeline (TF-IDF + Logistic Regression) achieving \textbf{97.5\% accuracy} and \textbf{0.977 F1 score} using 5-fold stratified cross-validation on \textbf{3,000+ features} (unigram/bigram TF-IDF + 8 handcrafted features).}
+            \resumeItem{Implemented DistilBERT-based sentiment classification (66M-parameter transformer) with batch processing of 32 reviews and VADER fallback, classifying reviews across 3 sentiment classes.}
+            \resumeItem{Engineered aspect-based NLP analysis across \textbf{10 product dimensions} (quality, price, delivery, battery, etc.) using 110+ keywords with per-sentence sentiment scoring.}
+            \resumeItem{Containerized the full-stack app with \textbf{Docker Compose (2 services)}, automating ML dependency installation, Playwright Chromium setup, and persistent data volumes for one-command deployment.}
+            \resumeItem{Designed \textbf{15+ RESTful API endpoints} with rate limiting (60 req/min) and validated with \textbf{87 automated tests} (71 backend pytest + 16 frontend Vitest).}
+            \resumeItem{Integrated Groq AI (\textbf{LLaMA 3.3 70B}) for structured product summaries, aspect deep-dives, and seller response suggestions with auto-retry for rate limiting.}
           \resumeItemListEnd
 
       \resumeProjectHeading
