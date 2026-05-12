@@ -62,6 +62,22 @@ const Home = () => {
 
   return (
     <div ref={mainRef}>
+      {/* Fixed Video Background — persists across entire page */}
+      <div className="video-bg-fixed">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
+          <source
+            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260330_145725_08886141-ed95-4a8e-8d6d-b75eaadce638.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <div className="video-overlay-fixed"></div>
+      </div>
+
       <Navbar />
       <Hero />
       <div className="section-divider" />

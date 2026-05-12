@@ -109,10 +109,6 @@ const Hero = () => {
 
   return (
     <section className={styles.heroSection} id="home" ref={heroRef}>
-      {/* Background gradient orbs */}
-      <div className={styles.bgOrb1}></div>
-      <div className={styles.bgOrb2}></div>
-
       <div className={styles.heroContent}>
         <div className={styles.heroText}>
           <div className={styles.badge}>Available for opportunities</div>

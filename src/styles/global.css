@@ -47,19 +47,20 @@
 }
 
 :root {
-  --accent: #E07A5F;
-  --accent-light: #F2A488;
-  --teal: #2E6171;
-  --teal-light: #3D8B9E;
-  --bg-color: #0a0a0a;
-  --bg-card: #111111;
-  --bg-glass: rgba(255, 255, 255, 0.04);
-  --border-glass: rgba(255, 255, 255, 0.08);
-  --text-color: #f0f0f0;
-  --text-muted: #888888;
-  --text-dim: #555555;
-  --gradient-accent: linear-gradient(135deg, #E07A5F, #F2A488, #3D8B9E);
-  --gradient-hero: linear-gradient(135deg, #E07A5F 0%, #F2A488 40%, #3D8B9E 100%);
+  /* New color palette — inspired by pixel art cosmic scene */
+  --accent: #00d4ff;
+  --accent-light: #5ae8ff;
+  --teal: #1a6b3c;
+  --teal-light: #3adf7f;
+  --bg-color: #050510;
+  --bg-card: rgba(10, 10, 26, 0.6);
+  --bg-glass: rgba(5, 10, 30, 0.45);
+  --border-glass: rgba(0, 180, 255, 0.12);
+  --text-color: #e8f0ff;
+  --text-muted: #7a8fa8;
+  --text-dim: #3a4a5a;
+  --gradient-accent: linear-gradient(135deg, #00d4ff, #5ae8ff, #3adf7f);
+  --gradient-hero: linear-gradient(135deg, #00d4ff 0%, #5ae8ff 40%, #3adf7f 100%);
 }
 
 * {
@@ -74,7 +75,7 @@ html {
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: var(--bg-color);
+  background: transparent;
   color: var(--text-color);
   cursor: none;
   overflow-x: hidden;
@@ -103,6 +104,12 @@ body {
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border-glass);
   border-radius: 16px;
+}
+
+/* All content above fixed video */
+section, nav, footer, header {
+  position: relative;
+  z-index: 1;
 }
 
 /* Gradient text utility */
@@ -144,11 +151,11 @@ body {
 
   0%,
   100% {
-    box-shadow: 0 0 20px rgba(224, 122, 95, 0.15);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
   }
 
   50% {
-    box-shadow: 0 0 40px rgba(224, 122, 95, 0.3);
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.35);
   }
 }
 
@@ -166,9 +173,39 @@ body {
 .section-divider {
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent), var(--teal), transparent);
+  background: linear-gradient(90deg, transparent, var(--accent), var(--teal-light), transparent);
   opacity: 0.3;
   margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Fixed Video Background */
+.video-bg-fixed {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.video-bg-fixed video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.video-overlay-fixed {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 5, 16, 0.5) 0%,
+    rgba(5, 5, 16, 0.35) 30%,
+    rgba(5, 5, 16, 0.5) 60%,
+    rgba(5, 5, 16, 0.65) 100%
+  );
+  pointer-events: none;
 }
 
 /* Custom Cursor */

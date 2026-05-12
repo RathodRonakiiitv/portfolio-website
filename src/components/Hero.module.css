@@ -8,30 +8,6 @@
   overflow: hidden;
 }
 
-/* Background gradient orbs */
-.bgOrb1 {
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(224, 122, 95, 0.12) 0%, transparent 70%);
-  top: -100px;
-  right: -100px;
-  pointer-events: none;
-  animation: float 8s ease-in-out infinite;
-}
-
-.bgOrb2 {
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(61, 139, 158, 0.1) 0%, transparent 70%);
-  bottom: -100px;
-  left: -100px;
-  pointer-events: none;
-  animation: float 10s ease-in-out infinite reverse;
-}
 
 .heroContent {
   display: flex;
@@ -53,13 +29,14 @@
   align-items: center;
   gap: 8px;
   padding: 8px 20px;
-  border: 1px solid rgba(224, 122, 95, 0.3);
+  border: 1px solid rgba(0, 212, 255, 0.3);
   border-radius: 100px;
   font-size: 0.8rem;
   color: var(--accent);
   letter-spacing: 0.5px;
   margin-bottom: 30px;
-  background: rgba(224, 122, 95, 0.05);
+  background: rgba(0, 212, 255, 0.06);
+  backdrop-filter: blur(8px);
 }
 
 .badge::before {
@@ -93,6 +70,7 @@
 .lastName .char {
   color: var(--text-color);
   -webkit-text-fill-color: var(--text-color);
+  text-shadow: 0 0 40px rgba(0, 212, 255, 0.15);
 }
 
 .services {
@@ -106,17 +84,18 @@
   align-items: center;
   gap: 10px;
   padding: 12px 20px;
-  background: var(--bg-glass);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--border-glass);
+  background: rgba(0, 140, 255, 0.06);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 180, 255, 0.12);
   border-radius: 12px;
   transition: all 0.3s ease;
 }
 
 .serviceItem:hover {
   border-color: var(--accent);
-  background: rgba(224, 122, 95, 0.08);
+  background: rgba(0, 212, 255, 0.1);
   transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 212, 255, 0.1);
 }
 
 .serviceIcon {
@@ -149,7 +128,7 @@
   height: 200px;
   border-radius: 24px;
   overflow: hidden;
-  border: 2px solid var(--border-glass);
+  border: 2px solid rgba(0, 180, 255, 0.15);
   margin-bottom: 10px;
   transition: border-color 0.3s ease;
   position: relative;
@@ -183,6 +162,7 @@
   color: var(--accent-light);
   line-height: 1.5;
   font-weight: 500;
+  text-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
 }
 
 .heroRight p {
@@ -201,6 +181,7 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  z-index: 1;
 }
 
 .scrollLine {

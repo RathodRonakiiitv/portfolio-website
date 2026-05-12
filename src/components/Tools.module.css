@@ -63,9 +63,9 @@
 }
 
 .toolItem:hover {
-  border-color: rgba(224, 122, 95, 0.25);
+  border-color: rgba(0, 212, 255, 0.25);
   transform: translateY(-6px);
-  box-shadow: 0 16px 40px rgba(224, 122, 95, 0.08);
+  box-shadow: 0 16px 40px rgba(0, 212, 255, 0.08);
 }
 
 .toolIcon {

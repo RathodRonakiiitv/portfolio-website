@@ -21,7 +21,7 @@
 }
 
 .statItem:hover {
-    border-color: rgba(224, 122, 95, 0.25);
+    border-color: rgba(0, 212, 255, 0.25);
     transform: translateY(-4px);
 }
 
