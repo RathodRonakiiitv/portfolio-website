@@ -4,7 +4,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 import Brands from '../components/Brands'
-import Carousel from '../components/Carousel'
 import About from '../components/About'
 import Stats from '../components/Stats'
 import Tools from '../components/Tools'
@@ -84,10 +83,6 @@ const Home = () => {
       <Brands />
       <div className="section-divider" />
       <div className="reveal">
-        <Carousel />
-      </div>
-      <div className="section-divider" />
-      <div className="reveal">
         <About />
       </div>
       <div className="section-divider" />
@@ -107,3 +102,4 @@ const Home = () => {
 }
 
 export default Home
+
