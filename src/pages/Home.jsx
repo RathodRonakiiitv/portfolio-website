@@ -92,9 +92,7 @@ const Home = () => {
         <Tools />
       </div>
       <div className="section-divider" />
-      <div className="reveal">
-        <Categories />
-      </div>
+      <Categories />
       <ConnectButton />
       <Footer />
     </div>
