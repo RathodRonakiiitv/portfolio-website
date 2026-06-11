@@ -1,28 +1,54 @@
 import { useEffect, useRef } from 'react'
+import { useLocation } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+// Components
+import ParticleBackground from '../components/ParticleBackground'
 import Navbar from '../components/Navbar'
+import LateralNav from '../components/LateralNav'
 import Hero from '../components/Hero'
-import Brands from '../components/Brands'
 import About from '../components/About'
-import Stats from '../components/Stats'
-import Tools from '../components/Tools'
+import Services from '../components/Services'
 import Categories from '../components/Categories'
-import ConnectButton from '../components/ConnectButton'
 import Footer from '../components/Footer'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const Home = () => {
   const mainRef = useRef(null)
+  const { pathname, hash } = useLocation()
+
+  useEffect(() => {
+    // Handle routing to sections
+    if (hash) {
+      setTimeout(() => {
+        const id = hash.replace('#', '')
+        const element = document.getElementById(id)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }
+      }, 100)
+    } else if (pathname === '/contact') {
+      setTimeout(() => {
+        const element = document.getElementById('contact')
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }
+      }, 100)
+    } else {
+      window.scrollTo(0, 0)
+    }
+  }, [pathname, hash])
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animate each section with ScrollTrigger
-      const sections = gsap.utils.toArray('.reveal')
-      sections.forEach((section) => {
-        gsap.fromTo(section,
-          { opacity: 0, y: 80 },
+      // General fade up for un-animated sections
+      const revealSections = gsap.utils.toArray('.reveal-up')
+      revealSections.forEach((section) => {
+        gsap.fromTo(
+          section,
+          { opacity: 0, y: 50 },
           {
             opacity: 1,
             y: 0,
@@ -31,26 +57,8 @@ const Home = () => {
             scrollTrigger: {
               trigger: section,
               start: 'top 85%',
-              end: 'top 50%',
               toggleActions: 'play none none none',
-            }
-          }
-        )
-      })
-
-      // Parallax effect for section dividers
-      gsap.utils.toArray('.section-divider').forEach((divider) => {
-        gsap.fromTo(divider,
-          { scaleX: 0 },
-          {
-            scaleX: 1,
-            duration: 1.2,
-            ease: 'power2.inOut',
-            scrollTrigger: {
-              trigger: divider,
-              start: 'top 90%',
-              toggleActions: 'play none none none',
-            }
+            },
           }
         )
       })
@@ -61,43 +69,25 @@ const Home = () => {
 
   return (
     <div ref={mainRef}>
-      {/* Fixed Video Background — persists across entire page */}
-      <div className="video-bg-fixed">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-        >
-          <source
-            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260330_145725_08886141-ed95-4a8e-8d6d-b75eaadce638.mp4"
-            type="video/mp4"
-          />
-        </video>
-        <div className="video-overlay-fixed"></div>
-      </div>
+      {/* Immersive Background */}
+      <ParticleBackground />
 
+      {/* Navigation Layer */}
       <Navbar />
-      <Hero />
-      <div className="section-divider" />
-      <Brands />
-      <div className="section-divider" />
-      <div className="reveal">
+      <LateralNav />
+
+      {/* Main Content Flow - Seamless Sidewave Style */}
+      <main>
+        <Hero />
         <About />
-      </div>
-      <div className="section-divider" />
-      <Stats />
-      <div className="section-divider" />
-      <div className="reveal">
-        <Tools />
-      </div>
-      <div className="section-divider" />
-      <Categories />
-      <ConnectButton />
+        <Services />
+        <Categories />
+      </main>
+
+      {/* Footer / Contact */}
       <Footer />
     </div>
   )
 }
 
 export default Home
-

@@ -1,37 +1,113 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import styles from './About.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
+const values = [
+  {
+    word: 'PRECISION',
+    description: 'Every line of code matters. Clean architecture and algorithmic efficiency are non-negotiable.',
+  },
+  {
+    word: 'LOGIC',
+    description: '500+ DSA problems solved. I think in data structures, patterns, and optimized solutions.',
+  },
+  {
+    word: 'CURIOSITY',
+    description: 'From NLP pipelines to web scraping systems — I build to learn and learn to build better.',
+  },
+  {
+    word: 'IMPACT',
+    description: 'Backend systems that serve real users. APIs that scale. Code that solves actual problems.',
+  },
+  {
+    word: 'GROWTH',
+    description: 'B.Tech CSE at IIIT Vadodara. 2+ years of project-based development and counting.',
+  },
+]
+
 const About = () => {
   const sectionRef = useRef(null)
+  const [activeValue, setActiveValue] = useState(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Left column slide in
-      gsap.fromTo(`.${styles.aboutLeft}`,
-        { x: -80, opacity: 0 },
+      // Heading entrance
+      gsap.fromTo(
+        `.${styles.bigHeading}`,
+        { opacity: 0, y: 80, scale: 0.95 },
         {
-          x: 0, opacity: 1, duration: 1, ease: 'power3.out',
-          scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' }
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: `.${styles.headingBlock}`,
+            start: 'top 75%',
+          },
         }
       )
-      // Right column slide in
-      gsap.fromTo(`.${styles.aboutRight}`,
-        { x: 80, opacity: 0 },
+
+      // Descriptive text block
+      gsap.fromTo(
+        `.${styles.descBlock}`,
+        { opacity: 0, y: 60 },
         {
-          x: 0, opacity: 1, duration: 1, ease: 'power3.out',
-          scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' }
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: `.${styles.descBlock}`,
+            start: 'top 80%',
+          },
         }
       )
-      // Center image scale
-      gsap.fromTo(`.${styles.profileImageContainer}`,
-        { scale: 0.8, opacity: 0 },
+
+      // Profile photo parallax
+      gsap.fromTo(
+        `.${styles.photoWrapper}`,
+        { scale: 0.85, opacity: 0 },
         {
-          scale: 1, opacity: 1, duration: 0.8, ease: 'back.out(1.5)',
-          scrollTrigger: { trigger: sectionRef.current, start: 'top 70%' }
+          scale: 1,
+          opacity: 1,
+          duration: 1.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: `.${styles.photoWrapper}`,
+            start: 'top 80%',
+          },
+        }
+      )
+
+      // Parallax on scroll for photo
+      gsap.to(`.${styles.photoWrapper}`, {
+        y: -40,
+        scrollTrigger: {
+          trigger: `.${styles.photoWrapper}`,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1,
+        },
+      })
+
+      // Values stagger
+      gsap.fromTo(
+        `.${styles.valueItem}`,
+        { opacity: 0, x: -40 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.6,
+          stagger: 0.12,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: `.${styles.valuesGrid}`,
+            start: 'top 75%',
+          },
         }
       )
     }, sectionRef)
@@ -41,93 +117,100 @@ const About = () => {
 
   return (
     <section className={styles.section} id="about" ref={sectionRef}>
-      <div className={styles.sectionHeader}>
-        <span className={styles.sectionTag}>About</span>
-        <h2 className={styles.sectionTitle}>
-          Who I <span className={styles.accent}>Am</span>
+      {/* Big heading block */}
+      <div className={styles.headingBlock}>
+        <h2 className={styles.bigHeading}>
+          <span className={styles.headingLine}>BEYOND</span>
+          <span className={`${styles.headingLine} ${styles.headingAccent}`}>
+            THE
+          </span>
+          <span className={styles.headingLine}>SURFACE</span>
         </h2>
       </div>
 
-      <div className={styles.aboutGrid}>
-        <div className={styles.aboutLeft}>
-          <div className={styles.card}>
-            <h3>Education</h3>
-            <ul>
-              <li>
-                <strong>IIIT Vadodara</strong> — B.Tech CSE
-              </li>
-              <li>Expected Graduation: 2028</li>
-              <li>📍 India</li>
-            </ul>
-          </div>
-
-          <div className={styles.card}>
-            <h3>Experience</h3>
-            <p>
-              2+ years of project-based development<br />
-              Backend systems & APIs with Python/FastAPI<br />
-              DSA problem solving with C++
-            </p>
-          </div>
-
-          <div className={styles.card}>
-            <h3>Focus Areas</h3>
-            <div className={styles.focusTags}>
-              <span>Backend Engineering</span>
-              <span>DSA</span>
-              <span>System Design</span>
-              <span>Web Scraping</span>
-            </div>
-          </div>
+      {/* Descriptive text */}
+      <div className={styles.descBlock}>
+        <div className={styles.descTag}>
+          <span className={styles.tagLine} />
+          <span>About</span>
         </div>
-
-        <div className={styles.profileImageContainer}>
-          <div className={styles.photoFrame}>
-            <img src="/images/profile.jpg" alt="Ronak Rathod" className={styles.profileImage} />
-          </div>
-          <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className={styles.resumeBtn}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="16" height="16">
-              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
-              <polyline points="7 10 12 15 17 10"></polyline>
-              <line x1="12" y1="15" x2="12" y2="3"></line>
-            </svg>
-            Download Resume
-          </a>
+        <h3 className={styles.descTitle}>EVOLVING THROUGH CLARITY</h3>
+        <p className={styles.descText}>
+          I'm a passionate Software Developer and CS student at IIIT Vadodara
+          who thrives at the intersection of logic and creativity. I enjoy
+          building reliable, scalable backend systems and solving complex
+          algorithmic challenges — turning abstract problems into clean,
+          working code.
+        </p>
+        <div className={styles.descMeta}>
+          <span>IIIT Vadodara</span>
+          <span className={styles.metaDot}>·</span>
+          <span>B.Tech CSE</span>
+          <span className={styles.metaDot}>·</span>
+          <span>Class of 2028</span>
         </div>
+      </div>
 
-        <div className={styles.aboutRight}>
-          <div className={styles.card}>
-            <h3>Languages</h3>
-            <ul>
-              <li>C++</li>
-              <li>Python</li>
-              <li>SQL</li>
-              <li>JavaScript</li>
-            </ul>
-          </div>
+      {/* Profile photo */}
+      <div className={styles.photoWrapper}>
+        <div className={styles.photoFrame}>
+          <img
+            src="/images/profile.jpg"
+            alt="Ronak Rathod"
+            className={styles.profileImage}
+          />
+          <div className={styles.photoGlow} />
+        </div>
+        <a
+          href="/resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.resumeBtn}
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            width="14"
+            height="14"
+          >
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+          Download Resume
+        </a>
+      </div>
 
-          <div className={styles.card}>
-            <h3>Concepts</h3>
-            <div className={styles.focusTags}>
-              <span>DSA</span>
-              <span>DBMS</span>
-              <span>OOP</span>
-              <span>REST APIs</span>
-              <span>NLP</span>
-            </div>
-          </div>
-
-          <div className={styles.card}>
-            <h3>Contact</h3>
-            <p>
-              <a href="mailto:rathodronakiiitv@gmail.com">rathodronakiiitv@gmail.com</a>
-            </p>
-          </div>
-
-          <div className={styles.card}>
-            <h3>Interests</h3>
-            <p>Problem Solving • Open Source • AI/ML</p>
-          </div>
+      {/* Values — clickable list */}
+      <div className={styles.valuesGrid}>
+        <div className={styles.valuesLabel}>
+          <span className={styles.tagLine} />
+          <span>Core Values</span>
+        </div>
+        <div className={styles.valuesList}>
+          {values.map((v, i) => (
+            <button
+              key={i}
+              className={`${styles.valueItem} ${
+                activeValue === i ? styles.valueActive : ''
+              }`}
+              onClick={() => setActiveValue(activeValue === i ? null : i)}
+            >
+              <span className={styles.valueWord}>{v.word}</span>
+              <span className={styles.valueDash}>—</span>
+              <div
+                className={styles.valueDesc}
+                style={{
+                  maxHeight: activeValue === i ? '100px' : '0',
+                  opacity: activeValue === i ? 1 : 0,
+                }}
+              >
+                {v.description}
+              </div>
+            </button>
+          ))}
         </div>
       </div>
     </section>

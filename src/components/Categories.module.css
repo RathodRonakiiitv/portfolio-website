@@ -1,272 +1,293 @@
+/* ===================================================
+   USE CASES / PROJECTS — Scroll-Stacking Cards
+   =================================================== */
+
 .section {
-  padding: 100px 60px 200px;
-  max-width: 1000px;
-  margin: 0 auto;
+  position: relative;
+  padding: clamp(6rem, 12vh, 10rem) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
 }
 
-.sectionHeader {
-  margin-bottom: 60px;
-  text-align: center;
+/* --- Heading Block --- */
+.headingBlock {
+  padding: 0 8vw;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-.sectionTag {
-  display: inline-block;
-  font-size: 0.75rem;
-  letter-spacing: 3px;
+.tagWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.tagLine {
+  width: 24px;
+  height: 1px;
+  background: var(--accent, #00d4ff);
+}
+
+.tagText {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
   text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 12px;
+  letter-spacing: 0.2em;
+  color: var(--accent, #00d4ff);
 }
 
 .title {
-  font-family: 'HelveticaLocal', sans-serif;
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  font-weight: 700;
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--white, #ffffff);
 }
 
 .accent {
-  background: var(--gradient-hero);
-  background-size: 200% 200%;
+  background: linear-gradient(135deg, #00d4ff, #5ae8ff, #3adf7f);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gradientShift 4s ease infinite;
 }
 
-.sectionSubtitle {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  margin-top: 12px;
-  line-height: 1.7;
-}
-
-/* ========================================
-   STACKING CARDS CONTAINER
-   ======================================== */
+/* --- Stacking Container --- */
 .stackContainer {
-  display: flex;
-  flex-direction: column;
-  /* Extra padding at bottom so the last card has room to scroll */
-  padding-bottom: 60px;
+  position: relative;
+  padding: 0 4vw;
+  padding-bottom: 20vh; /* Space to scroll past the stack */
 }
 
-/* Each sticky wrapper pins at its own `top` (set via inline style) */
 .stickyCardWrapper {
   position: sticky;
-  /* top is set inline: 80px, 120px, 160px, 200px ... */
-  z-index: 1;
-  margin-bottom: 40px;
+  margin-bottom: 50vh; /* creates the scroll distance between cards */
+  transform-origin: top center;
   will-change: transform, filter;
-  transition: box-shadow 0.3s ease;
-  border-radius: 24px;
-  transform-origin: center top;
 }
 
-/* Increase z-index for each card so later cards stack on top */
-.stickyCardWrapper:nth-child(1) { z-index: 1; }
-.stickyCardWrapper:nth-child(2) { z-index: 2; }
-.stickyCardWrapper:nth-child(3) { z-index: 3; }
-.stickyCardWrapper:nth-child(4) { z-index: 4; }
-.stickyCardWrapper:nth-child(5) { z-index: 5; }
-.stickyCardWrapper:nth-child(6) { z-index: 6; }
+.stickyCardWrapper:last-child {
+  margin-bottom: 0;
+}
 
-/* ========================================
-   CARD ITSELF
-   ======================================== */
-.categoryCard {
-  position: relative;
+/* --- Card Layout --- */
+.card {
+  display: flex;
+  background: var(--bg-color, #050510);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 24px;
   overflow: hidden;
-  height: 420px;
-  text-decoration: none;
-  display: block;
-  border: 1px solid var(--border-glass);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.4),
-    0 2px 8px rgba(0, 212, 255, 0.05);
-  transition: box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
-              border-color 0.4s ease;
+  height: 70vh;
+  min-height: 500px;
+  max-height: 800px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
 }
 
-.categoryCard:hover {
-  box-shadow:
-    0 16px 64px rgba(0, 0, 0, 0.5),
-    0 4px 16px rgba(0, 212, 255, 0.15);
-  border-color: rgba(0, 212, 255, 0.3);
+/* --- Image Side --- */
+.imageContainer {
+  flex: 1.2;
+  position: relative;
+  overflow: hidden;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Background image */
-.cardBg {
-  position: absolute;
-  inset: 0;
+.cardImg {
   width: 100%;
-  height: 100%;
+  height: 130%; /* taller for parallax */
   object-fit: cover;
-  transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  will-change: transform;
 }
 
-.categoryCard:hover .cardBg {
-  transform: scale(1.06);
-}
-
-/* Dark gradient overlay */
-.cardOverlay {
+.imageOverlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    180deg,
-    rgba(5, 5, 16, 0.1) 0%,
-    rgba(5, 5, 16, 0.3) 40%,
-    rgba(5, 5, 16, 0.92) 100%
-  );
-  transition: background 0.4s ease;
-}
-
-.categoryCard:hover .cardOverlay {
-  background: linear-gradient(
-    180deg,
-    rgba(0, 212, 255, 0.03) 0%,
-    rgba(5, 5, 16, 0.4) 40%,
-    rgba(5, 5, 16, 0.95) 100%
+    90deg,
+    transparent 0%,
+    rgba(5, 5, 16, 0.2) 50%,
+    rgba(5, 5, 16, 0.8) 100%
   );
 }
 
-/* Card number watermark */
 .cardNumber {
   position: absolute;
-  top: 24px;
-  right: 32px;
-  font-family: 'HelveticaLocal', sans-serif;
-  font-size: 5rem;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.04);
-  line-height: 1;
-  z-index: 1;
-  pointer-events: none;
-  transition: color 0.4s ease;
+  top: 2rem;
+  left: 2rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 8rem;
+  font-weight: 900;
+  line-height: 0.8;
+  color: rgba(255, 255, 255, 0.1);
+  mix-blend-mode: overlay;
 }
 
-.categoryCard:hover .cardNumber {
-  color: rgba(0, 212, 255, 0.08);
-}
-
-/* Info block */
-.cardInfo {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 36px 40px;
-  z-index: 2;
-  transform: translateY(8px);
-  transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.categoryCard:hover .cardInfo {
-  transform: translateY(0);
-}
-
-/* Tags */
-.cardTags {
+/* --- Content Side --- */
+.contentContainer {
+  flex: 1;
   display: flex;
-  gap: 8px;
-  margin-bottom: 14px;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: all 0.4s ease 0.1s;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 4rem;
+  background: linear-gradient(145deg, rgba(10, 10, 26, 0.6), rgba(5, 5, 16, 0.9));
+  backdrop-filter: blur(20px);
 }
 
-.categoryCard:hover .cardTags {
-  opacity: 1;
-  transform: translateY(0);
+.cardInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-.cardTags span {
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tags span {
+  font-family: 'Inter', sans-serif;
   font-size: 0.65rem;
-  padding: 4px 12px;
-  border-radius: 100px;
-  background: rgba(0, 212, 255, 0.15);
-  color: var(--accent-light);
-  border: 1px solid rgba(0, 212, 255, 0.2);
-  letter-spacing: 0.5px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  backdrop-filter: blur(8px);
+  color: var(--accent, #00d4ff);
+  padding: 4px 10px;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 100px;
 }
 
 .cardInfo h3 {
-  font-family: 'HelveticaLocal', sans-serif;
-  font-size: 1.8rem;
-  color: var(--text-color);
-  margin-bottom: 6px;
-  letter-spacing: -0.3px;
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: 800;
+  color: var(--white, #ffffff);
+  line-height: 1.1;
 }
 
-.cardInfo p {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  margin-bottom: 14px;
-  line-height: 1.5;
-}
-
-/* View link */
-.viewLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.85rem;
-  color: var(--accent);
-  opacity: 0;
-  transform: translateX(-12px);
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) 0.15s;
+.subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: var(--text-color, #e8f0ff);
   font-weight: 500;
-  letter-spacing: 0.3px;
 }
 
-.viewLink svg {
+.desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: var(--text-muted, #7a8fa8);
+  line-height: 1.6;
+  max-width: 90%;
+}
+
+/* Explore Button */
+.exploreBtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  group: hover;
+}
+
+.btnText {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-color, #e8f0ff);
+  transition: color 0.3s ease;
+}
+
+.btnIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btnIcon svg {
+  width: 16px;
+  height: 16px;
   transition: transform 0.3s ease;
 }
 
-.categoryCard:hover .viewLink {
-  opacity: 1;
-  transform: translateX(0);
+.exploreBtn:hover {
+  border-color: var(--accent, #00d4ff);
 }
 
-.categoryCard:hover .viewLink svg {
-  transform: translate(2px, -2px);
+.exploreBtn:hover .btnText {
+  color: var(--accent, #00d4ff);
 }
 
-/* ========================================
-   RESPONSIVE
-   ======================================== */
-@media (max-width: 768px) {
-  .section {
-    padding: 60px 20px 160px;
+.exploreBtn:hover .btnIcon {
+  background: var(--accent, #00d4ff);
+  border-color: var(--accent, #00d4ff);
+  color: #000;
+  transform: translateX(4px);
+}
+
+.exploreBtn:hover .btnIcon svg {
+  transform: translateX(2px);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 1024px) {
+  .card {
+    flex-direction: column;
+    height: auto;
+    max-height: none;
   }
 
-  .stickyCardWrapper {
-    margin-bottom: 24px;
+  .imageContainer {
+    height: 300px;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
 
-  .categoryCard {
-    height: 320px;
-    border-radius: 18px;
+  .imageOverlay {
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(5, 5, 16, 0.8) 100%
+    );
   }
 
-  .stickyCardWrapper {
-    border-radius: 18px;
+  .contentContainer {
+    padding: 2rem;
   }
 
-  .cardInfo {
-    padding: 24px;
-  }
-
-  .cardInfo h3 {
-    font-size: 1.3rem;
+  .desc {
+    max-width: 100%;
   }
 
   .cardNumber {
-    font-size: 3rem;
-    top: 16px;
-    right: 20px;
+    font-size: 6rem;
+    top: 1rem;
+    left: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 4rem 0;
+  }
+
+  .stackContainer {
+    padding: 0 6vw;
+  }
+
+  .imageContainer {
+    height: 250px;
   }
 }
